@@ -1,428 +1,148 @@
-# \# Object Detection Using TensorFlow
+# Object Detection Using TensorFlow
 
-# 
+## Overview
 
-# A deep learning-based Object Detection system developed using \*\*TensorFlow\*\* and \*\*Keras\*\* for simultaneous handwritten digit classification and localization. The project uses the \*\*MNIST dataset\*\* and applies \*\*Bounding Box Regression\*\* to detect the position of digits on a larger canvas.
+This project implements an object detection model using TensorFlow and Keras to perform both handwritten digit classification and object localization. The model is trained on the MNIST dataset by placing each digit on a 75×75 canvas and predicting its class along with its bounding box coordinates.
 
-# 
+## Features
 
-# \---
+- Handwritten digit classification
+- Bounding box prediction
+- Multi-output CNN architecture
+- TensorFlow and Keras implementation
+- IoU (Intersection over Union) evaluation
+- Visualization of predictions
 
-# 
+## Dataset
 
-# \## Project Overview
+This project uses the MNIST in CSV dataset from Kaggle.
 
-# 
+Dataset: https://www.kaggle.com/datasets/oddrationale/mnist-in-csv
 
-# Traditional image classification identifies \*\*what\*\* an object is, whereas object detection identifies \*\*what\*\* the object is \*\*and where\*\* it is located.
+Required files:
 
-# 
+- mnist_train.csv
+- mnist_test.csv
 
-# In this project, the standard MNIST handwritten digit dataset is converted into an object detection dataset by randomly placing each digit onto a \*\*75 × 75\*\* canvas. A Convolutional Neural Network (CNN) is then trained to perform two tasks simultaneously:
+Note: The `mnist_train.csv` file is not included in this repository because it exceeds GitHub's file size limit. Download it from Kaggle and place it in the project folder before running the project.
 
-# 
+## Project Structure
 
-# \- Digit Classification (0–9)
+```text
+Object-Detection/
+├── object_detection.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── mnist_test.csv
+├── AI_INT_KANCHARINEEHARIKA.pdf
+└── screenshots/
+    ├── training_accuracy.png
+    ├── prediction_output.png
+    └── model_output.png
+```
 
-# \- Bounding Box Regression
+## Technologies Used
 
-# 
+- Python
+- TensorFlow
+- Keras
+- NumPy
+- Pandas
+- Matplotlib
+- Pillow
+- Spyder IDE
+- Anaconda
 
-# \---
+## Model Architecture
 
-# 
+The model consists of:
 
-# \## Features
+- Three convolutional layers
+- Average pooling layers
+- Dense layer with 128 neurons
 
-# 
+The network has two output heads:
 
-# \- Multi-output CNN Architecture
+### Classification Head
 
-# \- Handwritten Digit Detection
+- Softmax activation
+- Predicts digit classes from 0 to 9
 
-# \- Bounding Box Prediction
+### Bounding Box Regression Head
 
-# \- TensorFlow \& Keras Implementation
+- Linear activation
+- Predicts normalized bounding box coordinates
 
-# \- Data Preprocessing Pipeline
+## Evaluation Metrics
 
-# \- IoU (Intersection over Union) Evaluation
+- Classification Accuracy
+- Mean Squared Error (MSE)
+- Intersection over Union (IoU)
 
-# \- Visualization of Predictions
+## Installation
 
-# \- Implemented in Spyder IDE
+Clone the repository:
 
-# 
+```bash
+git clone https://github.com/kanchari-neeharika/Object-Detection.git
+```
 
-# \---
+Move into the project folder:
 
-# 
+```bash
+cd Object-Detection
+```
 
-# \## Dataset
+Install the required packages:
 
-# 
+```bash
+pip install -r requirements.txt
+```
 
-# \*\*Dataset:\*\* MNIST in CSV Format
+## Usage
 
-# 
+1. Download the MNIST dataset from Kaggle.
+2. Place `mnist_train.csv` and `mnist_test.csv` in the project folder.
+3. Run the program:
 
-# The dataset contains handwritten digits (0–9) represented as pixel values.
+```bash
+python object_detection.py
+```
 
-# 
+## Output
 
-# Download the dataset from Kaggle:
+The model produces:
 
-# 
+- Classification Accuracy
+- Bounding Box MSE
+- IoU Score
+- Predicted Bounding Boxes
+- Visualization of prediction results
 
-# https://www.kaggle.com/datasets/oddrationale/mnist-in-csv
+## Future Improvements
 
-# 
+- YOLO implementation
+- SSD object detector
+- Faster R-CNN
+- Real-time webcam detection
+- Transfer learning
+- Data augmentation
 
-# Required files:
+## Screenshots
 
-# 
+Add screenshots of:
 
-# \- `mnist\_train.csv`
+- Training accuracy graph
+- Prediction results
+- Final model output
 
-# \- `mnist\_test.csv`
+## Author
 
-# 
+Neeharika Kanchari
 
-# > \*\*Note:\*\* The training dataset (`mnist\_train.csv`) is not included in this repository because it exceeds GitHub's file size limit. Download it from the Kaggle link above and place it in the project directory before running the code.
+GitHub: https://github.com/kanchari-neeharika
 
-# 
+## License
 
-# \---
-
-# 
-
-# \## Project Structure
-
-# 
-
-# ```
-
-# Object-Detection/
-
-# │
-
-# ├── object\_detection.py
-
-# ├── requirements.txt
-
-# ├── README.md
-
-# ├── .gitignore
-
-# ├── mnist\_test.csv
-
-# ├── AI\_INT\_KANCHARINEEHARIKA.pdf
-
-# └── screenshots/
-
-# &#x20;   ├── accuracy.png
-
-# &#x20;   ├── prediction.png
-
-# &#x20;   └── model\_output.png
-
-# ```
-
-# 
-
-# \---
-
-# 
-
-# \## Technologies Used
-
-# 
-
-# \- Python
-
-# \- TensorFlow
-
-# \- Keras
-
-# \- NumPy
-
-# \- Pandas
-
-# \- Matplotlib
-
-# \- Pillow
-
-# \- Spyder IDE
-
-# \- Anaconda
-
-# 
-
-# \---
-
-# 
-
-# \## Model Architecture
-
-# 
-
-# The network consists of:
-
-# 
-
-# \- Three Convolutional Layers
-
-# \- Average Pooling Layers
-
-# \- Dense Layer (128 Neurons)
-
-# 
-
-# The extracted features are divided into two outputs:
-
-# 
-
-# \### Classification Head
-
-# 
-
-# \- Softmax Activation
-
-# \- Predicts digit classes (0–9)
-
-# 
-
-# \### Bounding Box Regression Head
-
-# 
-
-# \- Linear Activation
-
-# \- Predicts normalized bounding box coordinates
-
-# 
-
-# \---
-
-# 
-
-# \## Evaluation Metrics
-
-# 
-
-# The model is evaluated using:
-
-# 
-
-# \- Classification Accuracy
-
-# \- Mean Squared Error (MSE)
-
-# \- Intersection over Union (IoU)
-
-# 
-
-# \---
-
-# 
-
-# \## Installation
-
-# 
-
-# Clone the repository:
-
-# 
-
-# ```bash
-
-# git clone https://github.com/kanchari-neeharika/Object-Detection.git
-
-# ```
-
-# 
-
-# Move into the project folder:
-
-# 
-
-# ```bash
-
-# cd Object-Detection
-
-# ```
-
-# 
-
-# Install the required packages:
-
-# 
-
-# ```bash
-
-# pip install -r requirements.txt
-
-# ```
-
-# 
-
-# \---
-
-# 
-
-# \## Running the Project
-
-# 
-
-# Place the following files in the project folder:
-
-# 
-
-# \- mnist\_train.csv
-
-# \- mnist\_test.csv
-
-# 
-
-# Run:
-
-# 
-
-# ```bash
-
-# python object\_detection.py
-
-# ```
-
-# 
-
-# \---
-
-# 
-
-# \## Output
-
-# 
-
-# The model generates:
-
-# 
-
-# \- Classification Accuracy
-
-# \- Bounding Box MSE
-
-# \- IoU Score
-
-# \- Predicted Bounding Boxes
-
-# \- Visualization of Ground Truth vs Predicted Boxes
-
-# 
-
-# \---
-
-# 
-
-# \## Results
-
-# 
-
-# The model successfully performs:
-
-# 
-
-# \- Handwritten digit classification
-
-# \- Bounding box localization
-
-# \- Simultaneous multi-task learning
-
-# 
-
-# The project demonstrates how object detection concepts can be implemented using a simple CNN before progressing to advanced detectors such as YOLO, SSD, and Faster R-CNN.
-
-# 
-
-# \---
-
-# 
-
-# \## Future Improvements
-
-# 
-
-# \- YOLOv8 Implementation
-
-# \- SSD Detector
-
-# \- Faster R-CNN
-
-# \- Real-time Webcam Detection
-
-# \- COCO Dataset Support
-
-# \- Transfer Learning
-
-# \- Data Augmentation
-
-# 
-
-# \---
-
-# 
-
-# \## Screenshots
-
-# 
-
-# \### Training Accuracy
-
-# 
-
-# \*Add your training accuracy graph here.\*
-
-# 
-
-# \### Bounding Box Prediction
-
-# 
-
-# \*Add prediction output image here.\*
-
-# 
-
-# \### Model Output
-
-# 
-
-# \*Add final output screenshot here.\*
-
-# 
-
-# \---
-
-# 
-
-# \## Author
-
-# 
-
-# \*\*Neeharika Kanchari\*\*
-
-# 
-
-# GitHub: https://github.com/kanchari-neeharika
-
-# 
-
-# \---
-
-# 
-
-# \## License
-
-# 
-
-# This project is intended for educational and academic purposes.
-
+This project is intended for educational and academic purposes.
